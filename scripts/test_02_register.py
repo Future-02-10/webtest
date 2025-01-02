@@ -30,12 +30,12 @@ class TestLogin:
         time.sleep(1)
 
     # 测试用例：登录功能
-    @pytest.mark.parametrize("case_name,user,pwd,exp_el,expect",read_json("register_data"))
+    @pytest.mark.parametrize("case_name,user,pwd,pwd2,qq,exp_el,expect",read_json("register_data"))
     def test01_login_abnormal(self,case_name,user,pwd,pwd2,qq,exp_el,expect):
         allure.dynamic.title(case_name)
         allure.dynamic.severity("normal")
         with allure.step("测试步骤一：输入用户名、密码、验证码，点击登录"):
-            RegisterPage().login(user,pwd,pwd2,qq)
+            RegisterPage().register(user,pwd,pwd2,qq)
         with allure.step("测试步骤二：断言"):
             msg=get_el_text(self.driver,exp_el,expect)
             assert expect in msg
