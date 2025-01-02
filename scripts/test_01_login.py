@@ -12,7 +12,6 @@ class TestLogin:
     def setup_class(self):
         # ②创建浏览器驱动对象
         self.driver = DriveUtils.get_driver()
-        self.driver.implicitly_wait(2)
 
     # 类级别后置方法：关闭浏览器
     def teardown_class(self):
@@ -30,20 +29,9 @@ class TestLogin:
         # ⑤暂停几秒钟
         time.sleep(1)
 
-
-    @allure.title("验证登录成功")
-    @allure.severity(allure.severity_level.BLOCKER)
-    def test01_login_suc(self):
-        with allure.step("测试步骤一：输入正确的用户名、密码、验证码，点击登录"):
-            LoginPage().login("111","111")
-        with allure.step("测试步骤二：断言"):
-            is_suc=is_text_present(self.driver,"退出")
-            assert is_suc
-        allure.attach(self.driver.get_screenshot_as_png(),name="登录成功截图",attachment_type=allure.attachment_type.PNG)
-
     # 测试用例：登录功能
     @pytest.mark.parametrize("case_name,user,pwd,exp_el,expect",read_json("login_data"))
-    def test02_login_abnormal(self,case_name,user,pwd,exp_el,expect):
+    def test01_login_abnormal(self,case_name,user,pwd,exp_el,expect):
         allure.dynamic.title(case_name)
         allure.dynamic.severity("normal")
         with allure.step("测试步骤一：输入用户名、密码、验证码，点击登录"):
@@ -51,3 +39,13 @@ class TestLogin:
         with allure.step("测试步骤二：断言"):
             msg=get_el_text(self.driver,exp_el,expect)
             assert expect in msg
+
+    @allure.title("验证登录成功")
+    @allure.severity(allure.severity_level.BLOCKER)
+    def test02_login_suc(self):
+        with allure.step("测试步骤一：输入正确的用户名、密码、验证码，点击登录"):
+            LoginPage().login("111","111")
+        with allure.step("测试步骤二：断言"):
+            is_suc=is_text_present(self.driver,"退出")
+            assert is_suc
+        allure.attach(self.driver.get_screenshot_as_png(),name="登录成功截图",attachment_type=allure.attachment_type.PNG)
