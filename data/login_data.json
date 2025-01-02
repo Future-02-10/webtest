@@ -1,8 +1,8 @@
 {
   "account_not_exist": {
     "case_name": "验证账号不存在时登录失败",
-    "user": "258",
-    "pwd": "111",
+    "user": "1235",
+    "pwd": "",
     "exp_el": "//*[@id=\"loginCue\"]/font/b",
     "expect": "学号不存在"
   },
