@@ -1,0 +1,25 @@
+{
+  "account_not_exist": {
+    "case_name": "验证账号不存在时登录失败",
+    "user": "1235",
+    "pwd": "",
+    "pwd2": "",
+    "qq": "",
+    "exp_el": "//*[@id=\"loginCue\"]/font/b",
+    "expect": "学号不存在"
+  },
+  "pwd_error": {
+    "case_name": "验证密码错误时登录失败",
+    "user": "111",
+    "pwd": "222",
+    "exp_el": "//*[@id=\"loginCue\"]/font/b",
+    "expect": "密码错误！"
+  },
+    "account_none": {
+      "case_name": "验证账号为空时登录失败",
+      "user": "",
+      "pwd": "111",
+      "exp_el": "//*[@id=\"loginCue\"]/font/b",
+      "expect": "学号不能为空"
+  }
+}
