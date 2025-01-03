@@ -29,6 +29,7 @@ class TestLogin:
         # ⑤暂停几秒钟
         time.sleep(1)
 
+
     # 测试用例：登录功能
     @pytest.mark.parametrize("case_name,user,pwd,exp_el,expect",read_json("login_data"))
     def test01_login_abnormal(self,case_name,user,pwd,exp_el,expect):
