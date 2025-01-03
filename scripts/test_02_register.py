@@ -2,10 +2,8 @@
 import time
 import pytest
 import allure
-
 from page.register_page import RegisterPage
 from utils import DriveUtils, get_el_text, is_text_present, read_json
-
 
 class TestRegister:
 
@@ -30,7 +28,7 @@ class TestRegister:
         # ⑤暂停几秒钟
         time.sleep(1)
 
-    # 测试用例：登录功能
+    # 测试用例：注册功能
     @pytest.mark.parametrize("case_name,user,pwd,pwd2,qq,exp_el,expect", read_json("register_data"))
     def test01_register_abnormal(self, case_name, user, pwd, pwd2, qq, exp_el, expect):
         allure.dynamic.title(case_name)

@@ -2,18 +2,18 @@
   "account_already_exist": {
     "case_name": "验证账号已存在时注册失败",
     "user": "111",
-    "pwd": "111",
-    "pwd2": "111",
-    "qq": "12345678",
+    "pwd": "123456",
+    "pwd2": "123456",
+    "qq": "123456789",
     "exp_el": "//*[@id=\"userCue\"]/font/b",
     "expect": "学号已存在"
   },
   "pwd_error": {
     "case_name": "验证密码不一致时注册失败",
     "user": "000",
-    "pwd": "222",
-    "pwd2": "123",
-    "qq": "12345678",
+    "pwd": "123456",
+    "pwd2": "654321",
+    "qq": "987654321",
     "exp_el": "//*[@id=\"userCue\"]/font/b",
     "expect": "×两次密码不一致！"
   },

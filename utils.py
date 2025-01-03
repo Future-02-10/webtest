@@ -16,7 +16,6 @@ from io import BytesIO
 from easyocr import Reader
 
 
-
 class DriveUtils:
     __driver = None
 
@@ -34,7 +33,6 @@ class DriveUtils:
             cls.__driver.quit()
             cls.__driver = None
 
-
 def get_el_text(driver, xpath_str, wait_text):
     msg = None
     try:
@@ -48,7 +46,6 @@ def get_el_text(driver, xpath_str, wait_text):
         msg = driver.find_element(By.XPATH, xpath_str).text
         logging.info('获取判定的文本信息：{}'.format(msg))
     return msg
-
 
 def get_captcha(driver, dpi):
     try:
@@ -74,7 +71,6 @@ def get_captcha(driver, dpi):
     except Exception as e:
         logging.error(e)
 
-
 def get_alert_text(driver, wait_text, timeout=3):
     msg = None
     try:
@@ -97,7 +93,6 @@ def get_alert_text(driver, wait_text, timeout=3):
     finally:
         return msg
 
-
 def is_text_present(driver, text):
     try:
         WebDriverWait(driver, 3, 1).until(
@@ -108,7 +103,6 @@ def is_text_present(driver, text):
         print(e)
         driver.get_screenshot_as_file('执行失败截图.png')
         return False
-
 
 def read_json(filename):
     file_path = BASE_PATH + '/data/{}.json'.format(filename)
