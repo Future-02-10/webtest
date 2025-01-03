@@ -1,0 +1,34 @@
+{
+  "account_not_exist": {
+    "case_name": "验证账号不存在时登录失败",
+    "user": "1235",
+    "pwd": "132222",
+    "code": "N",
+    "exp_el": "/html/body/div[2]/div[2]/div/div/div/div/div/div/div/div[3]/div/div",
+    "expect": "该用户名不存在！"
+  },
+  "pwd_error": {
+    "case_name": "验证密码错误时登录失败",
+    "user": "admin",
+    "pwd": "222222",
+    "code": "N",
+    "exp_el": "/html/body/div[2]/div[2]/div/div/div/div/div/div/div/div[3]/div/div",
+    "expect": "密码错误！"
+  },
+    "account_none": {
+      "case_name": "验证账号为空时登录失败",
+      "user": "",
+      "pwd": "1112222",
+      "code": "N",
+      "exp_el": "/html/body/div[2]/div[2]/div/div/div/div/div/div/div/div[3]/div/div",
+      "expect": "请填写用户名"
+  },
+  "code_error": {
+    "case_name": "验证验证码错误时登录失败",
+      "user": "admin",
+      "pwd": "123456",
+      "code": "1111",
+      "exp_el": "/html/body/div[2]/div[2]/div/div/div/div/div/div/div/div[3]/div/div",
+      "expect": "验证码错误！"
+  }
+}
