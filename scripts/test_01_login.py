@@ -34,7 +34,7 @@ class TestLogin:
     def test01_login_abnormal(self,case_name,user,pwd,exp_el,expect):
         allure.dynamic.title(case_name)
         allure.dynamic.severity("normal")
-        with allure.step("测试步骤一：输入用户名、密码、验证码，点击登录"):
+        with allure.step("测试步骤一：输入用户名、密码，点击登录"):
             LoginPage().login(user,pwd)
         with allure.step("测试步骤二：断言"):
             msg=get_el_text(self.driver,exp_el,expect)
@@ -43,7 +43,7 @@ class TestLogin:
     @allure.title("验证登录成功")
     @allure.severity(allure.severity_level.BLOCKER)
     def test02_login_suc(self):
-        with allure.step("测试步骤一：输入正确的用户名、密码、验证码，点击登录"):
+        with allure.step("测试步骤一：输入正确的用户名、密码，点击登录"):
             LoginPage().login("111","111")
         with allure.step("测试步骤二：断言"):
             is_suc=is_text_present(self.driver,"退出")

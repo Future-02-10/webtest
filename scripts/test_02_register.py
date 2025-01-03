@@ -4,9 +4,10 @@ import pytest
 import allure
 
 from page.register_page import RegisterPage
-from utils import DriveUtils,get_el_text,is_text_present,read_json
+from utils import DriveUtils, get_el_text, is_text_present, read_json
 
-class TestLogin:
+
+class TestRegister:
 
     # 类级别前置方法：打开浏览器
     def setup_class(self):
@@ -30,22 +31,23 @@ class TestLogin:
         time.sleep(1)
 
     # 测试用例：登录功能
-    @pytest.mark.parametrize("case_name,user,pwd,pwd2,qq,exp_el,expect",read_json("register_data"))
-    def test01_login_abnormal(self,case_name,user,pwd,pwd2,qq,exp_el,expect):
+    @pytest.mark.parametrize("case_name,user,pwd,pwd2,qq,exp_el,expect", read_json("register_data"))
+    def test01_register_abnormal(self, case_name, user, pwd, pwd2, qq, exp_el, expect):
         allure.dynamic.title(case_name)
         allure.dynamic.severity("normal")
-        with allure.step("测试步骤一：输入用户名、密码、验证码，点击登录"):
-            RegisterPage().register(user,pwd,pwd2,qq)
+        with allure.step("测试步骤一：输入用户名、密码、确认密码、QQ，点击注册"):
+            RegisterPage().register(user, pwd, pwd2, qq)
         with allure.step("测试步骤二：断言"):
-            msg=get_el_text(self.driver,exp_el,expect)
+            msg = get_el_text(self.driver, exp_el, expect)
             assert expect in msg
 
     @allure.title("验证注册成功")
     @allure.severity(allure.severity_level.BLOCKER)
-    def test02_login_suc(self):
-        with allure.step("测试步骤一：输入正确的用户名、密码、验证码，点击登录"):
-            RegisterPage().login("999","999","999","1145141919")
+    def test02_register_suc(self):
+        with allure.step("测试步骤一：输入正确的用户名、密码、确认密码、QQ，点击注册"):
+            RegisterPage().register("999", "999", "999", "1145141919")
         with allure.step("测试步骤二：断言"):
-            is_suc=is_text_present(self.driver,"退出")
+            is_suc = is_text_present(self.driver, "退出")
             assert is_suc
-        allure.attach(self.driver.get_screenshot_as_png(),name="登录成功截图",attachment_type=allure.attachment_type.PNG)
+        allure.attach(self.driver.get_screenshot_as_png(), name="注册成功截图",
+                      attachment_type=allure.attachment_type.PNG)
