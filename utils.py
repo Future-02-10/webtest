@@ -1,6 +1,8 @@
 import json
 import logging
 
+import cv2
+import numpy as np
 from selenium import webdriver
 from selenium.common import TimeoutException, NoAlertPresentException
 from selenium.webdriver.edge.service import Service
@@ -9,6 +11,10 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from selenium.webdriver.common.by import By
 from config import BASE_PATH
+from PIL import Image
+from io import BytesIO
+from easyocr import Reader
+
 
 class DriveUtils:
     __driver = None
@@ -40,6 +46,30 @@ def get_el_text(driver, xpath_str, wait_text):
         msg = driver.find_element(By.XPATH, xpath_str).text
         logging.info('获取判定的文本信息：{}'.format(msg))
     return msg
+
+def get_captcha(driver, dpi):
+    try:
+        element = WebDriverWait(driver, 10, 1).until(EC.visibility_of_element_located((By.ID, 'captcha')))
+        x, y = element.location.values()
+        h, w = element.size.values()
+        image_data = driver.get_screenshot_as_png()
+        screenshot = Image.open(BytesIO(image_data))
+        result = screenshot.crop((x * dpi, y * dpi, (x + w) * dpi, (y + h) * dpi))
+        result.save('tmp/captcha.png')
+        img = cv2.imread('tmp/captcha.png')
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        blurred = cv2.GaussianBlur(gray, (5, 5), 0)
+        thresh = cv2.adaptiveThreshold(blurred, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
+        kernel = np.ones((2, 2), np.uint8)
+        morphed = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel)
+        preprocessed_image_path = 'tmp/cv_captcha.png'
+        cv2.imwrite(preprocessed_image_path, morphed)
+        reader = Reader(['en'], gpu=False)
+        result = reader.readtext('tmp/cv_captcha.png')
+        logging.info(result)
+        return result[0][1].replace(" ", "")
+    except Exception as e:
+        logging.error(e)
 
 def get_alert_text(driver, wait_text, timeout=3):
     msg = None
