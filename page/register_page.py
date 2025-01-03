@@ -11,7 +11,7 @@ class RegisterPage(BasePage):
         self.register_btn = (By.ID,"reg_button")
         self.to_register = (By.ID,"switch_login")
 
-    def login(self,user,pwd,pwd2,qq):
+    def register(self,user,pwd,pwd2,qq):
         self.find_el(self.to_register).click()
         self.input_text(self.find_el(self.user),user)
         self.input_text(self.find_el(self.pwd),pwd)
