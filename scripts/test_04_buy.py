@@ -25,7 +25,7 @@ class TestBuy:
     @allure.title("验证填写格式不符合")
     @allure.severity(allure.severity_level.BLOCKER)
     def test04_format_enter(self):
-        allure.dynamic.title("none_comment")
+        allure.dynamic.title("format_enter")
         allure.dynamic.severity("normal")
         with allure.step("测试步骤一：登录，进入求购页面，输入不完整商品详情，点击发布按钮"):
             HomePage().home_to_login()
@@ -41,13 +41,13 @@ class TestBuy:
     @allure.title("验证信息未填写完整")
     @allure.severity(allure.severity_level.BLOCKER)
     def test04_no_price(self):
-                allure.dynamic.title("none_comment")
+                allure.dynamic.title("none_price")
                 allure.dynamic.severity("normal")
                 with allure.step("测试步骤一：登录，进入求购页面，输入不完整信息，点击发布按钮"):
                     HomePage().home_to_login()
                     LoginPage().login("222", "222")
                     BuyPage().enter_publish()
-                    BuyPage().buy_enter("苹果手机", "iphone17proMax白色", "缅甸")
+                    BuyPage().buy("苹果手机", "iphone17proMax白色", "缅甸","")
                 with allure.step("测试步骤二：断言"):
                     is_not = get_alert_text(self.driver, "请填写期望价格")
                     assert is_not
@@ -57,7 +57,7 @@ class TestBuy:
     @allure.title("验证发布成功")
     @allure.severity(allure.severity_level.BLOCKER)
     def test04_buy_suc(self):
-        allure.dynamic.title("comment_suc")
+        allure.dynamic.title("buy_suc")
         allure.dynamic.severity("normal")
         with allure.step("测试步骤一：登录，进入求购页面，输入商品信息，点击发布按钮"):
             HomePage().home_to_login()
