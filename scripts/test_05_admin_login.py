@@ -2,10 +2,8 @@
 import time
 import pytest
 import allure
-
 from page.system_page import SystemPage
 from utils import DriveUtils, get_el_text, is_text_present, read_json, get_captcha
-
 
 class TestAdminLogin:
 
@@ -37,7 +35,7 @@ class TestAdminLogin:
         allure.dynamic.severity("normal")
         with allure.step("测试步骤一：输入用户名、密码、验证码，点击登录"):
             if code is "N":
-                code = get_captcha(self.driver, 1.5)
+                code = get_captcha(self.driver, 1.25)
             SystemPage().login(user, pwd, code)
         with allure.step("测试步骤二：断言"):
             msg = get_el_text(self.driver, exp_el, expect)
@@ -47,7 +45,7 @@ class TestAdminLogin:
     @allure.severity(allure.severity_level.BLOCKER)
     def test02_login_suc(self):
         with allure.step("测试步骤一：输入正确的用户名、密码、验证码，点击登录"):
-            code = get_captcha(self.driver, 1.5)
+            code = get_captcha(self.driver, 1.25)
             SystemPage().login("admin", "123456", code)
         with allure.step("测试步骤二：断言"):
             is_suc = is_text_present(self.driver, " 退出登录")
