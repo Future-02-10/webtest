@@ -1,0 +1,46 @@
+{
+  "no_upload": {
+    "case_name": "验证未上传文件时发布失败",
+    "upload": "",
+    "name": "测试",
+    "info": "一个测试商品",
+    "buyPrice": "114",
+    "sellPrice": "51",
+    "cid": "手机",
+    "cid2": "智能机",
+    "wait_text": "请上传图片"
+  },
+  "no_name": {
+    "case_name": "验证未填写商品名时发布失败",
+    "upload": "D:\\开发\\webtest\\upload\\test.png",
+    "name": "",
+    "info": "一个测试商品,用于测测测测测测测测试",
+    "buyPrice": "114",
+    "sellPrice": "52",
+    "cid": "手机",
+    "cid2": "智能机",
+    "wait_text": "请填写商品名称"
+  },
+  "no_cid": {
+    "case_name": "验证未选择类别时发布失败",
+    "upload": "D:\\开发\\webtest\\upload\\test.png",
+    "name": "测试",
+    "info": "一个测试商品,用于测测测测测测测测试",
+    "buyPrice": "114",
+    "sellPrice": "51",
+    "cid": "",
+    "cid2": "",
+    "wait_text": "请选择物品分类！"
+  },
+  "error_info": {
+    "case_name": "验证未选择类别时发布失败",
+    "upload": "D:\\开发\\webtest\\upload\\test.png",
+    "name": "测试",
+    "info": "一个测试商品",
+    "buyPrice": "114",
+    "sellPrice": "51",
+    "cid": "手机",
+    "cid2": "智能机",
+    "wait_text": "详情描述不能少于15个字！"
+  }
+}
